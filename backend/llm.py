@@ -13,7 +13,7 @@ from langchain_groq import ChatGroq
 
 groq_api_key = os.environ.get("GROQ_API_KEY", "")
 llm = ChatGroq(
-    model="llama-3.1-70b-versatile",
+    model="llama3-8b-8192",
     temperature=0,
     api_key=groq_api_key
 )
