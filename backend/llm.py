@@ -21,7 +21,7 @@ try:
             if models:
                 # Pick the best text model
                 for m in models:
-                    if "llama" in m["id"].lower() and "vision" not in m["id"].lower() and "tool-use" not in m["id"].lower():
+                    if "llama" in m["id"].lower() and "vision" not in m["id"].lower() and "tool-use" not in m["id"].lower() and "guard" not in m["id"].lower():
                         selected_model = m["id"]
                         break
 except Exception:
