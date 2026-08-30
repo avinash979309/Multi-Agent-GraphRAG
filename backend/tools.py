@@ -110,7 +110,7 @@ def duckduckgo_search(query: Annotated[str, "The search query."]):
 
 
 @tool
-def python_repl(
+def python(
     code: Annotated[
         str, "The python code to execute. Don't show the plot in the output."
     ],
@@ -257,7 +257,7 @@ def date_tool():
 
 
 tools = [
-    python_repl,
+    python,
     retrieve_documents,
     date_tool,
     user_file_retriever_tool,

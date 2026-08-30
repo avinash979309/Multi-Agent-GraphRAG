@@ -1,7 +1,7 @@
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from tools import (
     
-    python_repl,
+    python,
     retrieve_documents,
     date_tool,
     user_file_retriever_tool,
@@ -90,7 +90,7 @@ router_agent = create_agent(
 
 researcher_agent = create_agent(
     llm,
-    [retrieve_documents,user_file_retriever_tool, date_tool, python_repl, graph_traversal_tool],
+    [retrieve_documents,user_file_retriever_tool, date_tool, python, graph_traversal_tool],
     system_message="""You are a financial researcher agent responsible for either directly answering user queries or initiating document retrieval. Your primary focus is on providing quick and efficient responses. If you are unsure about the answer, especially for queries containing financial terms you don't understand, use the `retrieve_documents` tool to search for relevant documents. If the query doesn't align with your task, pass the state to the next agent.
 
 Here's your workflow:
@@ -118,7 +118,7 @@ Here's your workflow:
     - If the query asks for relational information between financial entities (e.g., subsidiaries, parents, competitors, executives), use the `graph_traversal_tool` to query the extracted knowledge graph.
 
 6. **Python REPL:**
-    - If you need to execute Python code to gather information or perform specific tasks, use the `python_repl` tool.
+    - If you need to execute Python code to gather information or perform specific tasks, use the `python` tool.
     - Provide the code snippet as input to the tool and use the output to enhance your response.
     - If your Python code generates a plot, it will be saved and the file path will be provided in the output.
     - If the saved file path is provided, and you have completed all tasks, respond as
@@ -145,7 +145,7 @@ Agent: FINAL ANSWER: Ask me about financial terms or concepts for accurate answe
 
 document_processor_agent = create_agent(
     llm,
-    [ duckduckgo_search ,date_tool, python_repl],
+    [ duckduckgo_search ,date_tool, python],
     system_message="""You are a document processor agent designed to analyze retrieved documents and answer user queries based on their content. 
 
 Here's your workflow:
@@ -169,7 +169,7 @@ Here's your workflow:
     - This tool can be used to provide context or additional information to the user or to modify query to get latest information from search tool.
 
 5 **Python REPL:**
-    - If you need to execute Python code to gather information or perform specific tasks, use the `python_repl` tool.
+    - If you need to execute Python code to gather information or perform specific tasks, use the `python` tool.
     - Provide the code snippet as input to the tool and use the output to enhance your response.
     - If your Python code generates a plot, it will be saved and the file path will be provided in the output.
     - If saved file path is provided, and you have completed all tasks, respond as
@@ -196,7 +196,7 @@ Example:
 
 synthesizer_agent = create_agent(
     llm,
-    [date_tool, python_repl],
+    [date_tool, python],
     system_message="""You are a synthesizer agent, the final step in an information gathering and answering process. Your task is to carefully consider all previous information and either synthesize a comprehensive and final answer to the user's original query or refine the query for the next iteration.
 
                     Here's your workflow:
@@ -222,7 +222,7 @@ synthesizer_agent = create_agent(
                         - This tool can be used to provide context or additional information to the user or to modify the query to get the latest information.
 
                     4 **Python REPL:**
-                        - If you need to execute Python code to gather information or perform specific tasks, use the `python_repl` tool to get the result.
+                        - If you need to execute Python code to gather information or perform specific tasks, use the `python` tool to get the result.
                         - Provide the code snippet as input to the tool and use the output to enhance your response.
                         - If your Python code generates a plot, it will be saved and the file path will be provided in the output.
                         - If saved file path is provided, and you have completed all tasks, respond as
