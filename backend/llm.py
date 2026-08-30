@@ -16,7 +16,7 @@ hf_token = os.environ.get("HF_TOKEN", "")
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
 
 hf_endpoint = HuggingFaceEndpoint(
-    repo_id="mistralai/Mistral-7B-Instruct-v0.3",
+    repo_id="HuggingFaceH4/zephyr-7b-beta",
     task="text-generation",
     max_new_tokens=1024,
     temperature=0.1,
