@@ -109,12 +109,13 @@ def duckduckgo_search(query: Annotated[str, "The search query."]):
     )
 
 
-@tool
-def python(
-    code: Annotated[
-        str, "The python code to execute. Don't show the plot in the output."
-    ],
-):
+from pydantic import BaseModel, Field
+
+class PythonInput(BaseModel):
+    code: str = Field(description="The python code to execute. Must be a valid JSON string.")
+
+@tool("python", args_schema=PythonInput)
+def python(code: str):
     """Use this to execute python code. If you want to see the output of a value,
     you should print it out with `print(...)`. This is visible to the user."""
 

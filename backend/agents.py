@@ -27,6 +27,7 @@ def create_agent(llm, tools, system_message: str):
                 " If you are unable to fully answer, another agent with different tools will assist where you left off."
                 " Execute what you can to make progress and provide tailored financial advice and actionable solutions."
                 " If you or any of the other agents have the final answer or deliverable, prefix your response with 'FINAL ANSWER:' so the team knows to stop."
+                " CRITICAL: When using tools (like python), you MUST format the tool arguments as a valid JSON object (e.g. {\"code\": \"print('hello')\"}). Do NOT output raw strings instead of JSON!"
                 " You have access to the following tools: {tool_names}.\n{system_message}",
             ),
             MessagesPlaceholder(variable_name="messages"),
