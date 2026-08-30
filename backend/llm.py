@@ -11,7 +11,7 @@ load_dotenv(".env")
 from langchain_groq import ChatGroq
 
 groq_api_key = os.environ.get("GROQ_API_KEY", "")
-selected_model = "llama-3.3-70b-versatile" # default guess
+selected_model = "openai/gpt-oss-120b" # default guess
 
 try:
     if groq_api_key:
@@ -21,7 +21,7 @@ try:
             if models:
                 # Pick the best text model
                 for m in models:
-                    if "llama" in m["id"].lower() and "vision" not in m["id"].lower() and "tool-use" not in m["id"].lower() and "guard" not in m["id"].lower():
+                    if ("gpt-oss" in m["id"].lower() or "llama" in m["id"].lower()) and "vision" not in m["id"].lower() and "tool-use" not in m["id"].lower() and "guard" not in m["id"].lower():
                         selected_model = m["id"]
                         break
 except Exception:
