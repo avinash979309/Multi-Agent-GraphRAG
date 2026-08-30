@@ -58,7 +58,10 @@ def generate_response(query):
                 }                
                 socketio.emit("response_complete", response)
         else:
-            response = response.split("FINAL ANSWER:")[1].strip()
+            if "FINAL ANSWER:" in response:
+                response = response.split("FINAL ANSWER:")[1].strip()
+            else:
+                response = response.strip()
             socketio.emit("response", {"message": response})
     except Exception as e:
         print(f"Error processing query: {e}")

@@ -138,6 +138,7 @@ def run_workflow(query, data_retriever):
 
         final_response = ""  # Store the final response
 
+        final_response = "I am processing your query but did not generate a final formatted answer."
         for s in events:
             print(s)
             if "FINAL ANSWER" in s[list(s.keys())[0]]["messages"][-1].content:
