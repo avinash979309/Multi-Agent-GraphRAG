@@ -15,7 +15,6 @@ faiss-cpu
 pypdf
 duckduckgo-search
 langchain-huggingface
-sentence-transformers
 networkx
 beautifulsoup4
 gunicorn

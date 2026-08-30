@@ -2,13 +2,13 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import FAISS
 # from langchain_openai import OpenAIEmbeddings
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
 
 db = None
 
 # --- PHASE 1: Hugging Face Embeddings Integration ---
 # def create_retriever_from_pdf(filepath, embeddings=OpenAIEmbeddings()):
-def create_retriever_from_pdf(filepath, embeddings=HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")):
+def create_retriever_from_pdf(filepath, embeddings=HuggingFaceEndpointEmbeddings(model="sentence-transformers/all-MiniLM-L6-v2")):
 # ----------------------------------------------------
     """Creates a retriever tool from a PDF file."""
     try:

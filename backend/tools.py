@@ -12,7 +12,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import FAISS
 # from langchain_openai import OpenAIEmbeddings
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
 import pickle
 import base64, io, os, sys
 import matplotlib
@@ -42,7 +42,7 @@ search = DuckDuckGoSearchResults(output_format="list")
 
 # Default vector database
 # def create_vector_db(embeddings=OpenAIEmbeddings()):
-def create_vector_db(embeddings=HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")):
+def create_vector_db(embeddings=HuggingFaceEndpointEmbeddings(model="sentence-transformers/all-MiniLM-L6-v2")):
     try:
         # 1. Load the PDF file
         for files in os.listdir("./default_files"):
@@ -153,7 +153,7 @@ def retrieve_documents(query: str):
         # retriever = db.as_retriever()
         db = FAISS.load_local(
             "./default_vector_db", 
-            HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2"), 
+            HuggingFaceEndpointEmbeddings(model="sentence-transformers/all-MiniLM-L6-v2"), 
             allow_dangerous_deserialization=True
         )
         faiss_retriever = db.as_retriever(search_kwargs={"k": 5})
@@ -193,7 +193,7 @@ def user_file_retriever_tool(query: str):
     # --- PHASE 2: Hybrid Search with RRF ---
     # db = FAISS.load_local("./vector_db", OpenAIEmbeddings(), allow_dangerous_deserialization=True)
     # retriever = db.as_retriever()
-    db = FAISS.load_local("./vector_db", HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2"), allow_dangerous_deserialization=True)
+    db = FAISS.load_local("./vector_db", HuggingFaceEndpointEmbeddings(model="sentence-transformers/all-MiniLM-L6-v2"), allow_dangerous_deserialization=True)
     faiss_retriever = db.as_retriever(search_kwargs={"k": 5})
     
     try:
