@@ -1,6 +1,6 @@
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from tools import (
-    tavily_tool,
+    
     python_repl,
     retrieve_documents,
     date_tool,
@@ -145,7 +145,7 @@ Agent: FINAL ANSWER: Ask me about financial terms or concepts for accurate answe
 
 document_processor_agent = create_agent(
     llm,
-    [tavily_tool, duckduckgo_search ,date_tool, python_repl],
+    [ duckduckgo_search ,date_tool, python_repl],
     system_message="""You are a document processor agent designed to analyze retrieved documents and answer user queries based on their content. 
 
 Here's your workflow:
@@ -157,7 +157,7 @@ Here's your workflow:
     - Prefix your response with "FINAL ANSWER:" to indicate that the workflow should end and this is the final answer.
 
 2. **Tavily Search or DuckDuck Search:**
-    - If the retrieved documents do not provide sufficient information to answer the query, use the `tavily_tool` or `duckduckgo_search` to perform a web search.
+    - If the retrieved documents do not provide sufficient information to answer the query, use the `duckduckgo_search` to perform a web search.
     - Analyze the search results and synthesize an answer based on the information you find.
     - If one tool does not provide satisfactory results, you can try the other tool to gather more information.
     - Cite the source of the information in your response (e.g., "According to [source name]...").
@@ -190,7 +190,7 @@ Example:
 **Agent:** (Analyzes documents) FINAL ANSWER: The main causes of climate change are... (provides answer based on documents).
 
 **Input:** (Retrieved documents do not contain information about a specific topic)
-**Agent:** (Uses `tavily_tool` to search for information) FINAL ANSWER: According to [source name], the answer is... 
+**Agent:** (Uses `duckduckgo_search` to search for information) FINAL ANSWER: According to [source name], the answer is... 
 """,
 )
 
