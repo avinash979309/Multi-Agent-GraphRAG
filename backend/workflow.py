@@ -150,6 +150,4 @@ def run_workflow(query, data_retriever):
         return final_response
     except Exception as e:
         print(f"error occured: {e}")
-        return str(
-            "Sorry, I am unable to process your request at the moment. Please try again later."
-        )
+        return str(f"Sorry, an internal error occurred: {e}")
