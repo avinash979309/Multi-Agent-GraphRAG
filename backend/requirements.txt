@@ -20,3 +20,4 @@ beautifulsoup4
 gunicorn
 gevent
 gevent-websocket
+ddgs
