@@ -13,6 +13,10 @@ load_dotenv(".env")
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
+@app.route('/')
+def health_check():
+    return "🚀 Multi-Agent GraphRAG Backend is LIVE and listening for WebSocket connections!"
+
 retriever = None
 
 def generate_response(query):
