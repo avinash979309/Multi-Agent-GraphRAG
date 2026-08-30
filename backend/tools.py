@@ -1,4 +1,3 @@
-from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain_community.tools import DuckDuckGoSearchRun, DuckDuckGoSearchResults
 from langchain_core.tools import tool
 from langchain_experimental.utilities import PythonREPL
@@ -32,7 +31,6 @@ We are defining some tools
 We will also define some more tools that our agents will use in the future
 """
 
-tavily_tool = TavilySearchResults(max_results=5)
 repl = (
     PythonREPL()
 )  # Warning: This executes code locally, which can be unsafe when not sandboxed
@@ -259,7 +257,6 @@ def date_tool():
 
 
 tools = [
-    tavily_tool,
     python_repl,
     retrieve_documents,
     date_tool,
