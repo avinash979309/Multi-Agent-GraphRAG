@@ -13,4 +13,11 @@ langgraph
 langchain_core
 faiss-cpu
 pypdf
-duckduckgo-search\nlangchain-huggingface\nsentence-transformers\nnetworkx\nbeautifulsoup4\ngunicorn\ngevent\ngevent-websocket
+duckduckgo-search
+langchain-huggingface
+sentence-transformers
+networkx
+beautifulsoup4
+gunicorn
+gevent
+gevent-websocket
